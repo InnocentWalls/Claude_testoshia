@@ -250,7 +250,7 @@ body {
 }
 
 function getJS() {
-  return \`class DVDBouncer {
+  return `class DVDBouncer {
     constructor() {
         this.logo = document.getElementById('bouncing-logo');
         this.bounceArea = document.getElementById('bounce-area');
@@ -428,7 +428,7 @@ function getJS() {
     
     changeColor() {
         this.currentColorIndex = (this.currentColorIndex + 1) % this.colors.length;
-        this.logo.style.filter = \`hue-rotate(\${this.currentColorIndex * 30}deg) drop-shadow(0 0 10px \${this.colors[this.currentColorIndex]})\`;
+        this.logo.style.filter = 'hue-rotate(' + (this.currentColorIndex * 30) + 'deg) drop-shadow(0 0 10px ' + this.colors[this.currentColorIndex] + ')';
     }
     
     updateCornerHits() {
@@ -457,7 +457,7 @@ function getJS() {
         this.speedMultiplier = speeds[nextIndex];
         
         // ボタンのテキストを更新
-        this.speedBtn.textContent = \`スピード: \${this.speedMultiplier}x\`;
+        this.speedBtn.textContent = 'スピード: ' + this.speedMultiplier + 'x';
     }
     
     adjustPositionOnResize() {
@@ -516,7 +516,7 @@ document.addEventListener('dblclick', function() {
     } else {
         document.documentElement.requestFullscreen();
     }
-});\`
+});`
 }
 
 // 画像データを取得する関数（実際のCloudflare Workersではbase64エンコードされた画像データを直接埋め込むか、

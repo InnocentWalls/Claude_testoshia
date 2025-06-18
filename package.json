@@ -1,0 +1,17 @@
+{
+  "name": "kubiyakubi-dvd-bouncer",
+  "version": "1.0.0",
+  "description": "DVD bouncing animation with kubiyakubi.png and gaming effects",
+  "main": "worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler publish",
+    "test": "wrangler dev --local"
+  },
+  "keywords": ["cloudflare-workers", "dvd", "bouncing", "animation", "gaming"],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+} 

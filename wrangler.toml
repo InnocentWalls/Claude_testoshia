@@ -1,0 +1,16 @@
+name = "kubiyakubi-dvd-bouncer"
+main = "worker.js"
+compatibility_date = "2023-10-02"
+
+[env.production]
+name = "kubiyakubi-dvd-bouncer"
+
+# 必要に応じてカスタムドメインを設定
+# route = "your-domain.com/*"
+
+# KV namespaceを使用する場合（画像ストレージ用）
+# [[kv_namespaces]]
+# binding = "ASSETS"
+# id = "your-kv-namespace-id"
+# preview_id = "your-preview-kv-namespace-id"
+ 

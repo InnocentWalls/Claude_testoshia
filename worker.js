@@ -23,9 +23,7 @@ async function handleRequest(request) {
         headers: { 'Content-Type': 'application/javascript' }
       })
     case '/kubiyakubi.png':
-      return new Response(await getImage(), {
-        headers: { 'Content-Type': 'image/png' }
-      })
+      return await getImage()
     default:
       return new Response('Not Found', { status: 404 })
   }
@@ -519,10 +517,34 @@ document.addEventListener('dblclick', function() {
 });`
 }
 
-// 画像データを取得する関数（実際のCloudflare Workersではbase64エンコードされた画像データを直接埋め込むか、
-// 外部ストレージから取得する必要があります）
+// 画像データを取得する関数
 async function getImage() {
-  // 注意: 実際のデプロイでは、この部分を画像データの適切な配信方法に置き換えてください
-  // 例: KV Storage、R2、または外部CDNからの取得
-  return null; // プレースホルダー
+  try {
+    // 外部URLから画像を取得
+    const response = await fetch('https://weight100kg.dev/kubiyakubi.png');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const imageData = await response.arrayBuffer();
+    
+    return new Response(imageData, {
+      headers: {
+        'Content-Type': 'image/png',
+        'Cache-Control': 'public, max-age=86400',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+  } catch (error) {
+    console.error('画像取得エラー:', error);
+    
+    // エラーの場合は404を返す
+    return new Response('Image not found', {
+      status: 404,
+      headers: {
+        'Content-Type': 'text/plain'
+      }
+    });
+  }
 } 
